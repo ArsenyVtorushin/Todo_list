@@ -1,0 +1,114 @@
+﻿<Window x:Class="Todo_list.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Todo_list"
+        mc:Ignorable="d"
+        Title="Список дел" Height="450" Width="800"
+        Background="#FFFDFAF1">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- First column -->
+
+        <TextBlock Text="Список дел"
+                   TextAlignment="Center"
+                   FontSize="26"
+                   Margin="15"/>
+
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="5"
+                      Background="#FDF5DF"
+                      Name="listToDo">
+            <StackPanel>
+
+                <StackPanel Margin="3">
+                    <TextBlock Text="Приготовить покушать"/>
+                    <TextBlock Text="15.01.2024"/>
+                    <TextBlock Text="Описания нет"/>
+                </StackPanel>
+
+                <StackPanel Margin="3">
+                    <TextBlock Text="Поработать"/>
+                    <TextBlock Text="20.01.2024"/>
+                    <TextBlock Text="Съездить на совещание в Москву"/>
+                </StackPanel>
+
+                <StackPanel Margin="3">
+                    <TextBlock Text="Отдохнуть"/>
+                    <TextBlock Text="01.02.2024"/>
+                    <TextBlock Text="Съездить в отпуск в Сочи"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button Content="Удалить дела" 
+                Grid.Row="2" 
+                Grid.Column="0"
+                Margin="10"
+                Padding="7"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#5EBEC4"
+                FontSize="15"/>
+
+
+
+        <!-- Second column -->
+
+        <CheckBox Content="Добавление новых дел"
+                  Grid.Column="1" VerticalAlignment="Center" Margin="7"
+                  Checked="AddNewTask_Checked"
+                  Unchecked="AddNewTask_Unchecked"/>
+
+            <GroupBox Grid.Column="1" Grid.Row="1" 
+                  Background="#FDF5DF" Margin="7"
+                  Name="groupBoxToDo">
+            <StackPanel>
+                <TextBlock Text="Название:" Margin="5"/>
+                <TextBox Margin="5" Name="titleToDo"/>
+                
+                <TextBlock Text="Выполнить до:" Margin="5"/>
+                <DatePicker Margin="5" Name="dateToDo"/>
+                
+                <TextBlock Text="Описание:" Margin="5"/>
+                <TextBox Name="descriptionToDo"
+                         MaxLines="10"
+                         Margin="5"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         AcceptsTab="True"/>
+            </StackPanel>
+        </GroupBox>
+
+        <Button Content="Добавить дело" 
+                Name="buttonAdd"
+                Grid.Row="2" 
+                Grid.Column="1"
+                Margin="10"
+                Padding="7"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#5EBEC4"
+                FontSize="15"
+                ToolTip="При добавлении дело появится в списке слева, и его придется выполнить"/>
+
+
+    </Grid>
+
+</Window>
