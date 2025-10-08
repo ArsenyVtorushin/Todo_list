@@ -28,34 +28,22 @@
                    FontSize="26"
                    Margin="15"/>
 
-        <ScrollViewer Grid.Row="1"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      Margin="5"
-                      Background="#FDF5DF"
-                      Name="listToDo">
-            <StackPanel>
-
-                <StackPanel Margin="3">
-                    <TextBlock Text="Приготовить покушать"/>
-                    <TextBlock Text="15.01.2024"/>
-                    <TextBlock Text="Описания нет"/>
-                </StackPanel>
-
-                <StackPanel Margin="3">
-                    <TextBlock Text="Поработать"/>
-                    <TextBlock Text="20.01.2024"/>
-                    <TextBlock Text="Съездить на совещание в Москву"/>
-                </StackPanel>
-
-                <StackPanel Margin="3">
-                    <TextBlock Text="Отдохнуть"/>
-                    <TextBlock Text="01.02.2024"/>
-                    <TextBlock Text="Съездить в отпуск в Сочи"/>
-                </StackPanel>
-
-            </StackPanel>
-        </ScrollViewer>
+        <ListBox Name="listToDo"
+                 Grid.Row="1"
+                 Margin="5"
+                 Background="#FDF5DF">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Margin="3">
+                            <TextBlock Text="{Binding Path=Title}"/>
+                            <TextBlock Text="{Binding Path=Date, StringFormat=dd.MM.yyyy}"/>
+                            <TextBlock Text="{Binding Path=Description}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Button Content="Удалить дела" 
                 Grid.Row="2" 
@@ -65,7 +53,8 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Background="#5EBEC4"
-                FontSize="15"/>
+                FontSize="15"
+                Click="RemoveTask_Click"/>
 
 
 
@@ -73,12 +62,12 @@
 
         <CheckBox Content="Добавление новых дел"
                   Grid.Column="1" VerticalAlignment="Center" Margin="7"
-                  Checked="AddNewTask_Checked"
-                  Unchecked="AddNewTask_Unchecked"/>
+                  Checked="AddTaskMode_Checked"
+                  Unchecked="AddTaskMode_Unchecked"/>
 
-            <GroupBox Grid.Column="1" Grid.Row="1" 
-                  Background="#FDF5DF" Margin="7"
-                  Name="groupBoxToDo">
+        <GroupBox Grid.Column="1" Grid.Row="1" 
+                Background="#FDF5DF" Margin="7"
+                Name="groupBoxToDo">
             <StackPanel>
                 <TextBlock Text="Название:" Margin="5"/>
                 <TextBox Margin="5" Name="titleToDo"/>
@@ -106,7 +95,8 @@
                 VerticalAlignment="Center"
                 Background="#5EBEC4"
                 FontSize="15"
-                ToolTip="При добавлении дело появится в списке слева, и его придется выполнить"/>
+                ToolTip="При добавлении дело появится в списке слева, и его придется выполнить"
+                Click="AddTask_Click"/>
 
 
     </Grid>

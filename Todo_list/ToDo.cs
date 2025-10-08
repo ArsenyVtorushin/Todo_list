@@ -15,9 +15,11 @@ namespace Todo_list
         private DateTime _date;
         private string _description;
 
-        public ToDo()
+        public ToDo(string title, DateTime date, string description)
         {
-
+            _title = title;
+            _date = date;
+            _description = description;
         }
 
         public string Title { get { return _title; } set { _title = value; } }
