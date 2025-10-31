@@ -5,14 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo_list"
         mc:Ignorable="d"
-        Title="Список дел" Height="450" Width="800"
+        Title="Список дел" Height="450" Width="400"
         Background="#FFFDFAF1">
     <Grid>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,71 +16,49 @@
         </Grid.RowDefinitions>
 
 
-        <!-- First column -->
 
         <TextBlock Text="Список дел"
                    TextAlignment="Center"
                    FontSize="26"
                    Margin="15"/>
 
-        <ListBox Name="listToDo"
-                 Grid.Row="1"
-                 Margin="5"
-                 Background="#FDF5DF">
-            <ListBox.ItemTemplate>
+        <DataGrid x:Name="dataGridToDo"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="None">
+            
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="0.05*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Title}" Width="0.6*"/>
+                <DataGridTextColumn Binding="{Binding Path=Date}" Width="0.3*"/>
+
+                <DataGridTemplateColumn Width="0.05*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="X"
+                                    Background="#5EBEC4">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Margin="3">
-                            <TextBlock Text="{Binding Path=Title}"/>
-                            <TextBlock Text="{Binding Path=Date, StringFormat=dd.MM.yyyy}"/>
-                            <TextBlock Text="{Binding Path=Description}"/>
-                        </StackPanel>
-                    </StackPanel>
+                    <TextBlock Text="{Binding Path=Description}"/>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </DataGrid.RowDetailsTemplate>
+            
+        </DataGrid>
 
-        <Button Content="Удалить дела" 
-                Grid.Row="2" 
-                Grid.Column="0"
-                Margin="10"
-                Padding="7"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="#5EBEC4"
-                FontSize="15"
-                Click="RemoveTask_Click"/>
-
-
-
-        <!-- Second column -->
-
-        <CheckBox Content="Добавление новых дел"
-                  Grid.Column="1" VerticalAlignment="Center" Margin="7"
-                  Checked="AddTaskMode_Checked"
-                  Unchecked="AddTaskMode_Unchecked"/>
-
-        <GroupBox Grid.Column="1" Grid.Row="1" 
-                Background="#FDF5DF" Margin="7"
-                Name="groupBoxToDo">
-            <StackPanel>
-                <TextBlock Text="Название:" Margin="5"/>
-                <TextBox Margin="5" Name="titleToDo"/>
-                
-                <TextBlock Text="Выполнить до:" Margin="5"/>
-                <DatePicker Margin="5" Name="dateToDo"/>
-                
-                <TextBlock Text="Описание:" Margin="5"/>
-                <TextBox Name="descriptionToDo"
-                         MaxLines="10"
-                         Margin="5"
-                         TextWrapping="Wrap"
-                         AcceptsReturn="True"
-                         AcceptsTab="True"/>
-            </StackPanel>
-        </GroupBox>
-
-        <Button Content="Добавить дело" 
+        <Button Content="Добавить дело"
                 Name="buttonAdd"
                 Grid.Row="2" 
                 Grid.Column="1"
@@ -95,9 +68,7 @@
                 VerticalAlignment="Center"
                 Background="#5EBEC4"
                 FontSize="15"
-                ToolTip="При добавлении дело появится в списке слева, и его придется выполнить"
                 Click="AddTask_Click"/>
-
 
     </Grid>
 
