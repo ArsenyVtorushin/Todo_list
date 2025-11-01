@@ -29,9 +29,21 @@ namespace Todo_list
             string title = titleToDo.Text;
             DateTime date = DateTime.Parse(dateToDo.Text);
             string description = descriptionToDo.Text;
-            MainWindow.ToDos.Add(new ToDo(title, date, description));
+            
+            if (title == "")
+                title = "Без названия";
+            // date не может быть равен null
+            if (description == "")
+                description = "Без описания";
 
+            MainWindow.ToDos.Add(new ToDo(title, date, description));
+            (this.Owner as MainWindow).dataGridToDo.ItemsSource = null;
             (this.Owner as MainWindow).dataGridToDo.ItemsSource = MainWindow.ToDos;
+
+            titleToDo.Text = null;
+            dateToDo.SelectedDate = null;
+            descriptionToDo.Text = null;
+
             this.Close();
         }
     }

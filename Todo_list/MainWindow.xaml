@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo_list"
         mc:Ignorable="d"
-        Title="Список дел" Height="450" Width="400"
+        Title="Список дел"
+        Height="450" Width="400"
         Background="#FFFDFAF1">
     <Grid>
 

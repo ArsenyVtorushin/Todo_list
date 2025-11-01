@@ -17,20 +17,22 @@ namespace Todo_list
     /// </summary>
     public partial class MainWindow : Window
     {
+        public AddTaskWindow windowAdd;
+        public static List<ToDo> ToDos;
+
         public MainWindow()
         {
             InitializeComponent();
             ToDos = new List<ToDo>();
-        }
 
-        private AddTaskWindow windowAdd;
-        public static List<ToDo> ToDos;
+            dataGridToDo.ItemsSource = ToDos;
+        }
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             AddTaskWindow windowAdd = new AddTaskWindow();
-            windowAdd.Show();
             windowAdd.Owner = this;
+            windowAdd.Show();
         }
                 
     }
