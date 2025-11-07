@@ -44,7 +44,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="X"
-                                    Background="#5EBEC4">
+                                    Background="#5EBEC4"
+                                    Click="DeleteTask_Click">
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

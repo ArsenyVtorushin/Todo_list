@@ -37,9 +37,9 @@ namespace Todo_list
             if (description == "")
                 description = "Описания нет";
 
-            MainWindow.ToDos.Add(new ToDo(title, date, description));
+            MainWindow.toDos.Add(new ToDo(title, date, description));
             (this.Owner as MainWindow).dataGridToDo.ItemsSource = null;
-            (this.Owner as MainWindow).dataGridToDo.ItemsSource = MainWindow.ToDos;
+            (this.Owner as MainWindow).dataGridToDo.ItemsSource = MainWindow.toDos;
 
             titleToDo.Text = null;
             dateToDo.SelectedDate = null;
