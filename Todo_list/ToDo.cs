@@ -14,7 +14,7 @@ namespace Todo_list
         private string _title;
         private string _date;
         private string _description;
-        private bool doing;
+        private bool _done;
 
         public ToDo(string title, string date, string description)
         {
@@ -26,6 +26,6 @@ namespace Todo_list
         public string Title { get { return _title; } set { _title = value; } }
         public string Date { get { return _date; } set { _date = value; } }
         public string Description { get { return _description;} set { _description = value; } }
-        public bool Doing { get { return doing; } set { doing = value; } }
+        public bool Done { get { return _done; } set { _done = value; } }
     }
 }

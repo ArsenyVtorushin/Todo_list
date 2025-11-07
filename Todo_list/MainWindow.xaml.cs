@@ -45,5 +45,26 @@ namespace Todo_list
             dataGridToDo.ItemsSource = null;
             dataGridToDo.ItemsSource = toDos;
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (dataGridToDo.SelectedItem != null)
+            {
+                int idx = toDos.IndexOf(dataGridToDo.SelectedItem as ToDo);
+                if (idx != -1) 
+                    toDos[idx].Done = true;
+            }
+            
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (dataGridToDo.SelectedItem != null)
+            {
+                int idx = toDos.IndexOf(dataGridToDo.SelectedItem as ToDo);
+                if (idx != -1)
+                    toDos[idx].Done = false;
+            }
+        }
     }
 }

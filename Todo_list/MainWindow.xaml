@@ -29,13 +29,19 @@
                   HeadersVisibility="None">
             
             <DataGrid.Columns>
+
                 <DataGridTemplateColumn Width="0.05*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox/>
+                            <CheckBox Checked="CheckBox_Checked"
+                                      Unchecked="CheckBox_Unchecked"
+                                      IsChecked="{Binding Path=Done}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding Path=Done, UpdateSourceTrigger=PropertyChanged}" Width="0.05*"/>
+
 
                 <DataGridTextColumn Binding="{Binding Path=Title}" Width="0.6*"/>
                 <DataGridTextColumn Binding="{Binding Path=Date}" Width="0.3*"/>
