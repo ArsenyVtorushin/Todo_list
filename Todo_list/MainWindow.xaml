@@ -73,7 +73,9 @@
 
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=Description}"/>
+                    <TextBox Text="{Binding Path=Description}"
+                             MaxLines="4"
+                             VerticalScrollBarVisibility="Auto"/>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
 

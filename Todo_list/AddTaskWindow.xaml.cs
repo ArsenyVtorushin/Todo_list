@@ -33,7 +33,8 @@ namespace Todo_list
             
             if (title == "")
                 title = "Без названия";
-            // date не может быть равен null
+            if (date == "")
+                date = DateTime.Now.ToString("dd.MM.yyyy");
             if (description == "")
                 description = "Описания нет";
 

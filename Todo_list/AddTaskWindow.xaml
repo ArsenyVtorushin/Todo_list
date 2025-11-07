@@ -28,17 +28,18 @@
 
                 <TextBlock Text="Выполнить до:" Margin="5"/>
                 <DatePicker Margin="5" Name="dateToDo" 
-                            SelectedDate="2024 10 01"
+                            SelectedDate="{Binding CurrentDate, StringFormat='dd.MM.yyyy'}"
                             SelectedDateFormat="Short"/>
 
                 <TextBlock Text="Описание:" Margin="5"/>
                 <TextBox Name="descriptionToDo"
                          Text="Описания нет"
-                         MaxLines="10"
+                         MaxLines="5"
                          Margin="5"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"
-                         AcceptsTab="True"/>
+                         AcceptsTab="True"
+                         VerticalScrollBarVisibility="Auto"/>
             </StackPanel>
         </GroupBox>
 
