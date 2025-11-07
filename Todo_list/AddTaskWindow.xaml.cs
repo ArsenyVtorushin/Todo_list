@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,14 +28,14 @@ namespace Todo_list
         private void SaveTask_Click(object sender, RoutedEventArgs e)
         {
             string title = titleToDo.Text;
-            DateTime date = DateTime.Parse(dateToDo.Text);
+            string date = dateToDo.Text;
             string description = descriptionToDo.Text;
             
             if (title == "")
                 title = "Без названия";
             // date не может быть равен null
             if (description == "")
-                description = "Без описания";
+                description = "Описания нет";
 
             MainWindow.ToDos.Add(new ToDo(title, date, description));
             (this.Owner as MainWindow).dataGridToDo.ItemsSource = null;

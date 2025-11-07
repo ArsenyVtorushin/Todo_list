@@ -25,6 +25,10 @@ namespace Todo_list
             InitializeComponent();
             ToDos = new List<ToDo>();
 
+            ToDos.Add(new ToDo("Приготовить покушать", new DateTime(2024, 1, 15).ToString("d"), "Нет описания"));
+            ToDos.Add(new ToDo("Поработать", new DateTime(2024, 1, 20).ToString("d"), "Съездить на совещание в Москву"));
+            ToDos.Add(new ToDo("Отдохнуть", new DateTime(2024, 2, 1).ToString("d"), "Съездить в отпуск в Сочи"));
+
             dataGridToDo.ItemsSource = ToDos;
         }
 

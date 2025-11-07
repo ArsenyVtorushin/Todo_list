@@ -28,7 +28,8 @@
 
                 <TextBlock Text="Выполнить до:" Margin="5"/>
                 <DatePicker Margin="5" Name="dateToDo" 
-                            SelectedDate="2024 10 01"/>
+                            SelectedDate="2024 10 01"
+                            SelectedDateFormat="Short"/>
 
                 <TextBlock Text="Описание:" Margin="5"/>
                 <TextBox Name="descriptionToDo"
@@ -42,16 +43,16 @@
         </GroupBox>
 
         <Button Content="Сохранить дело" 
-            Name="buttonSave"
-            Grid.Row="2" 
-            Grid.Column="1"
-            Margin="10"
-            Padding="7"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Background="#5EBEC4"
-            FontSize="15"
-            Click="SaveTask_Click"/>
+                Name="buttonSave"
+                Grid.Row="2" 
+                Grid.Column="1"
+                Margin="10"
+                Padding="7"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#5EBEC4"
+                FontSize="15"
+                Click="SaveTask_Click"/>
 
     </Grid>
 </Window>
