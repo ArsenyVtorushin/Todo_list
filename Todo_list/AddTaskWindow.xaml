@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="Добавление нового дела" Height="450" Width="400"
         ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <!--TODO: сделать стиль для DatePicker-->
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,8 +23,7 @@
 
         <TextBlock Text="Новое дело"
                    TextAlignment="Center"
-                   FontSize="26"
-                   Margin="15"/>
+                   Style="{StaticResource HeaderStyle}"/>
 
         <GroupBox Grid.Row="1" 
             Background="#FDF5DF" Margin="7"

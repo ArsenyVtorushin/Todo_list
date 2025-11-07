@@ -9,8 +9,22 @@
         Height="450" Width="400"
         Background="#FFFDFAF1"
         Icon="/Images/icon.png">
-    <Grid>
 
+    <Window.Resources>
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="HeadersVisibility" Value="None"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#FFFDFAF1"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#5EBEC4"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -20,9 +34,9 @@
 
 
         <TextBlock Text="Список дел"
-                   TextAlignment="Left"  
-                   FontSize="26"
-                   Margin="15"/>
+                   TextAlignment="Left"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource HeaderStyle}"/>
 
         <Button Name="buttonAdd"
                 Grid.Row="0"
@@ -39,8 +53,7 @@
 
         <DataGrid x:Name="dataGridToDo"
                   Grid.Row="1"
-                  AutoGenerateColumns="False"
-                  HeadersVisibility="None">
+                  Style="{StaticResource DataGridStyle}">
 
             <DataGrid.Columns>
 
