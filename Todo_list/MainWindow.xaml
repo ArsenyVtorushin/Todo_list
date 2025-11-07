@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Список дел"
         Height="450" Width="400"
-        Background="#FFFDFAF1">
+        Background="#FFFDFAF1"
+        Icon="/Images/icon.png">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -19,15 +20,28 @@
 
 
         <TextBlock Text="Список дел"
-                   TextAlignment="Center"
+                   TextAlignment="Left"  
                    FontSize="26"
                    Margin="15"/>
+
+        <Button Name="buttonAdd"
+                Grid.Row="0"
+                Margin="15"
+                Padding="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="#5EBEC4"
+                Click="AddTask_Click"
+                Height="40"
+                Width="60">
+            <Image Source="/Images/add.png"/>
+        </Button>
 
         <DataGrid x:Name="dataGridToDo"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   HeadersVisibility="None">
-            
+
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn Width="0.05*">
@@ -40,18 +54,17 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Binding="{Binding Path=Done, UpdateSourceTrigger=PropertyChanged}" Width="0.05*"/>
-
-
                 <DataGridTextColumn Binding="{Binding Path=Title}" Width="0.6*"/>
                 <DataGridTextColumn Binding="{Binding Path=Date}" Width="0.3*"/>
 
                 <DataGridTemplateColumn Width="0.05*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="X"
-                                    Background="#5EBEC4"
+                            <Button Background="#5EBEC4"
                                     Click="DeleteTask_Click">
+                                <Image Source="/Images/delete.png"
+                                       MaxHeight="10"
+                                       MaxWidth="10"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -63,20 +76,8 @@
                     <TextBlock Text="{Binding Path=Description}"/>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
-            
-        </DataGrid>
 
-        <Button Content="Добавить дело"
-                Name="buttonAdd"
-                Grid.Row="2" 
-                Grid.Column="1"
-                Margin="10"
-                Padding="7"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="#5EBEC4"
-                FontSize="15"
-                Click="AddTask_Click"/>
+        </DataGrid>
 
     </Grid>
 
