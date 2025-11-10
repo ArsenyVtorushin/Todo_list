@@ -1,4 +1,5 @@
 ﻿
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,11 +26,12 @@ namespace Todo_list
             InitializeComponent();
             toDos = new List<ToDo>();
 
-            toDos.Add(new ToDo("Приготовить покушать", new DateTime(2024, 1, 15).ToString("d"), "Нет описания"));
-            toDos.Add(new ToDo("Поработать", new DateTime(2024, 1, 20).ToString("d"), "Съездить на совещание в Москву"));
-            toDos.Add(new ToDo("Отдохнуть", new DateTime(2024, 2, 1).ToString("d"), "Съездить в отпуск в Сочи"));
+            toDos.Add(new ToDo("Приготовить покушать", new DateTime(2024, 1, 15).ToString("dd.MM.yyyy"), "Нет описания"));
+            toDos.Add(new ToDo("Поработать", new DateTime(2024, 1, 20).ToString("dd.MM.yyyy"), "Съездить на совещание в Москву"));
+            toDos.Add(new ToDo("Отдохнуть", new DateTime(2024, 2, 1).ToString("dd.MM.yyyy"), "Съездить в отпуск в Сочи"));
 
             dataGridToDo.ItemsSource = toDos;
+            EndToDo();
         }
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
@@ -44,6 +46,7 @@ namespace Todo_list
             toDos.Remove(dataGridToDo.SelectedItem as ToDo);
             dataGridToDo.ItemsSource = null;
             dataGridToDo.ItemsSource = toDos;
+            EndToDo();
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -54,7 +57,7 @@ namespace Todo_list
                 if (idx != -1) 
                     toDos[idx].Done = true;
             }
-            
+            EndToDo();
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -65,6 +68,16 @@ namespace Todo_list
                 if (idx != -1)
                     toDos[idx].Done = false;
             }
+            EndToDo();
+        }
+
+        public void EndToDo()
+        {
+            progressBarToDo.Minimum = 0;
+            progressBarToDo.Maximum = toDos.Count;
+            progressBarToDo.Value = toDos.Where(t => t.Done).Count();
+            value.Text = progressBarToDo.Value.ToString();
+            maximum.Text = progressBarToDo.Maximum.ToString();
         }
     }
 }

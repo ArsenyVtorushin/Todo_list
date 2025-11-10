@@ -21,6 +21,11 @@
             <Setter Property="GridLinesVisibility" Value="Horizontal"/>
             <Setter Property="HorizontalGridLinesBrush" Value="#5EBEC4"/>
         </Style>
+
+        <Style x:Key="ProgressBarStyle" TargetType="ProgressBar">
+            <Setter Property="Foreground" Value="#5EBEC4"/>
+            <Setter Property="Background" Value="#FFFDFAF1"/>
+        </Style>
     </Window.Resources>
     
     <Grid>
@@ -28,7 +33,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
 
@@ -53,7 +58,8 @@
 
         <DataGrid x:Name="dataGridToDo"
                   Grid.Row="1"
-                  Style="{StaticResource DataGridStyle}">
+                  Style="{StaticResource DataGridStyle}"
+                  Margin="7 0">
 
             <DataGrid.Columns>
 
@@ -93,6 +99,21 @@
             </DataGrid.RowDetailsTemplate>
 
         </DataGrid>
+
+        <ProgressBar Grid.Row="2"
+                     x:Name="progressBarToDo"
+                     Margin="7"
+                     Style="{StaticResource ProgressBarStyle}"/>
+
+        <TextBlock Grid.Row="2" 
+                   Margin="7"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <Run Name="value"></Run>
+            <Run>/</Run>
+            <Run Name="maximum"></Run>
+        </TextBlock>
+
 
     </Grid>
 

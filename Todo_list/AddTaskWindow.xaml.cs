@@ -38,6 +38,9 @@ namespace Todo_list
             if (description == "")
                 description = "Описания нет";
 
+            var parsedDate = DateTime.Parse(date, new CultureInfo("ru-RU"));
+            date = parsedDate.ToString("dd.MM.yyyy");
+
             MainWindow.toDos.Add(new ToDo(title, date, description));
             (this.Owner as MainWindow).dataGridToDo.ItemsSource = null;
             (this.Owner as MainWindow).dataGridToDo.ItemsSource = MainWindow.toDos;

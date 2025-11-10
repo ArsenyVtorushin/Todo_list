@@ -9,9 +9,21 @@
         ResizeMode="NoResize">
 
     <Window.Resources>
-        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
-            <!--TODO: сделать стиль для DatePicker-->
+        
+        <Style x:Key="CalendarDatePickerStyle" TargetType="Calendar">
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="BorderBrush" Value="#5EBEC4"/>
+            <Setter Property="Background" Value="#FFFDFAF1"/>
         </Style>
+        
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="SelectedDateFormat" Value="Long"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="BorderBrush" Value="#5EBEC4"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CalendarStyle" Value="{StaticResource CalendarDatePickerStyle}"/>
+        </Style>
+
     </Window.Resources>
     
     <Grid>
@@ -33,9 +45,10 @@
                 <TextBox Margin="5" Name="titleToDo"/>
 
                 <TextBlock Text="Выполнить до:" Margin="5"/>
-                <DatePicker Margin="5" Name="dateToDo" 
+                <DatePicker Margin="5" Name="dateToDo"
+                            Language="Ru"
                             SelectedDate="{Binding CurrentDate, StringFormat='dd.MM.yyyy'}"
-                            SelectedDateFormat="Short"/>
+                            Style="{StaticResource DatePickerStyle}"/>
 
                 <TextBlock Text="Описание:" Margin="5"/>
                 <TextBox Name="descriptionToDo"
