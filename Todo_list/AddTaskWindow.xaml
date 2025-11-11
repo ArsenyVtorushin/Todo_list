@@ -17,11 +17,13 @@
         </Style>
         
         <Style x:Key="DatePickerStyle" TargetType="DatePicker">
-            <Setter Property="SelectedDateFormat" Value="Long"/>
-            <Setter Property="BorderThickness" Value="1.5"/>
-            <Setter Property="BorderBrush" Value="#5EBEC4"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="CalendarStyle" Value="{StaticResource CalendarDatePickerStyle}"/>
+            <Style.Setters>
+                <Setter Property="SelectedDateFormat" Value="Long"/>
+                <Setter Property="BorderThickness" Value="1.5"/>
+                <Setter Property="BorderBrush" Value="#5EBEC4"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="CalendarStyle" Value="{StaticResource CalendarDatePickerStyle}"/>
+            </Style.Setters>
         </Style>
 
     </Window.Resources>
