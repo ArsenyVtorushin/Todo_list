@@ -24,6 +24,14 @@
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="CalendarStyle" Value="{StaticResource CalendarDatePickerStyle}"/>
             </Style.Setters>
+            
+            <!--Error here! (tried to make the datePicker yellow like the textBoxes-->
+            
+            <!--<Style.Triggers>
+                <Trigger Property="Control.IsFocused" Value="True"> 
+                    <Setter Property="DatePicker.Background" Value="#FFFFFAD6"/>
+                </Trigger>
+            </Style.Triggers>-->
         </Style>
 
     </Window.Resources>

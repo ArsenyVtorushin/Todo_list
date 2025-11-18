@@ -11,21 +11,31 @@
         Icon="/Images/icon.png">
 
     <Window.Resources>
-        <Style x:Key="DataGridStyle" TargetType="DataGrid">
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="CanUserAddRows" Value="False"/>
-            <Setter Property="CanUserDeleteRows" Value="False"/>
-            <Setter Property="HeadersVisibility" Value="None"/>
-            <Setter Property="RowBackground" Value="White"/>
-            <Setter Property="AlternatingRowBackground" Value="#FFFDFAF1"/>
-            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#5EBEC4"/>
-        </Style>
 
         <Style x:Key="ProgressBarStyle" TargetType="ProgressBar">
-            <Setter Property="Foreground" Value="#5EBEC4"/>
-            <Setter Property="Background" Value="#FFFDFAF1"/>
+            <Style.Setters>
+                <Setter Property="Maximum" Value="{Binding ItemsCount}"/>
+                
+                <!--"{Binding ElementName=listBoxToDo, Path=Items.Count}"/>-->
+                
+                <Setter Property="Value" Value="{Binding DoneItemsCount}"/>
+                
+                <!--"{Binding ElementName=listBoxToDo,
+                    Path=Items.Count, Converter={StaticResource progressbarValueConverter}}"-->
+                
+                <Setter Property="Foreground" Value="#5EBEC4"/>
+                <Setter Property="Background" Value="#FFFDFAF1"/>
+            </Style.Setters>
         </Style>
+
+        <Style x:Key="StrikethroughTextBlock" TargetType="TextBlock">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=checkBox, Path=IsChecked}" Value="True">
+                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
     </Window.Resources>
     
     <Grid>
@@ -35,8 +45,6 @@
             <RowDefinition/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-
-
 
         <TextBlock Text="Список дел"
                    TextAlignment="Left"
@@ -100,13 +108,16 @@
 
         </DataGrid>-->
 
-        <ListBox x:Name="dataGridToDo"
+        <ListBox x:Name="listBoxToDo"
                  Grid.Row="1"
-                 Margin="7 0">
+                 Margin="7 0"
+                 HorizontalContentAlignment="Stretch"
+                 Background="#FDF5DF">
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch">
-
+                    <Grid>
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -114,10 +125,58 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Row="0" Grid.Column="0"
+                        <CheckBox x:Name="checkBox"
+                                  Grid.Row="0" Grid.Column="0" 
+                                  Margin="2 0 2 0"
+                                  Checked="CheckBox_Checked"
+                                  Unchecked="CheckBox_Unchecked"
+                                  IsChecked="{Binding Path=Done}"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Margin="2 0 2 0"
+                                   FontSize="14"
+                                   Text="{Binding Path=Title}"
+                                   Style="{StaticResource StrikethroughTextBlock}"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="2"
+                                   Margin="2 0 2 0"
+                                   HorizontalAlignment="Right"
+                                   FontSize="14"
+                                   Text="{Binding Path=Date}"/>
+                        <!--Style="{StaticResource ColorR}"/>-->
+
+                        <Button Name="deleteTask_button"
+                                Click="DeleteTask_Click"
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                Margin="2"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Background="#5EBEC4"
+                                Height="20" Width="20">
+                            <Image Source="/Images/delete.png" 
+                                   Height="18"/>
+                        </Button>
+
+                        <ScrollViewer Grid.Row="1" Grid.Column="0" 
+                                      Grid.ColumnSpan="4" 
+                                      VerticalScrollBarVisibility="Auto"
+                                      Margin="2 0 2 0"
+                                      MaxHeight="60">
+                            <TextBlock FontSize="12"
+                                       Text="{Binding Path=Description}"/>
+                        </ScrollViewer>
+                        
+
+
+
+
+                        <!--<StackPanel Grid.Row="0" Grid.Column="0"
                                     Orientation="Horizontal">
                             <CheckBox Margin="2, 0, 2, 0"
                                       Checked="CheckBox_Checked"
@@ -147,9 +206,9 @@
 
                             <TextBlock Grid.Row="1" Grid.Column="0"
      Text="{Binding Path=Description}"/>
-                            <!--MaxLines="4"
-     VerticalScrollBarVisibility="Auto"-->
-                        </StackPanel>
+                            --><!--MaxLines="4"
+     VerticalScrollBarVisibility="Auto"--><!--
+                        </StackPanel>-->
 
                     </Grid>
                 </DataTemplate>
@@ -162,6 +221,7 @@
                      Style="{StaticResource ProgressBarStyle}"/>
 
         <TextBlock Grid.Row="2" 
+                   x:Name="textBoxOnProgressBar"
                    Margin="7"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">

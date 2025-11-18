@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,8 @@ namespace Todo_list
 
         private void SaveTask_Click(object sender, RoutedEventArgs e)
         {
+            var owner = (this.Owner as MainWindow);
+
             string title = titleToDo.Text;
             string date = dateToDo.Text;
             string description = descriptionToDo.Text;
@@ -42,12 +45,16 @@ namespace Todo_list
             date = parsedDate.ToString("dd.MM.yyyy");
 
             MainWindow.toDos.Add(new ToDo(title, date, description));
-            (this.Owner as MainWindow).dataGridToDo.ItemsSource = null;
-            (this.Owner as MainWindow).dataGridToDo.ItemsSource = MainWindow.toDos;
+            owner.listBoxToDo.ItemsSource = null;
+            owner.listBoxToDo.ItemsSource = MainWindow.toDos;
 
             titleToDo.Text = null;
             dateToDo.SelectedDate = null;
             descriptionToDo.Text = null;
+
+            owner.progressBarToDo.Maximum = owner.listBoxToDo.Items.Count;
+            owner.value.Text = owner.progressBarToDo.Value.ToString();
+            owner.maximum.Text = owner.progressBarToDo.Maximum.ToString();
 
             this.Close();
         }

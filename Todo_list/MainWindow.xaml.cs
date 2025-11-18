@@ -20,6 +20,20 @@ namespace Todo_list
     {
         public AddTaskWindow windowAdd;
         public static List<ToDo> toDos;
+        public int ItemsCount => listBoxToDo.Items?.Count ?? 0;
+        public int CompletedItemsCount
+        {
+            get
+            {
+                if (listBoxToDo.Items == null) return 0;
+                int completed = 0;
+                foreach (var item in listBoxToDo.Items)
+                {
+                    if ((item as ToDo).Done) completed++;
+                }
+                return completed;
+            }
+        }
 
         public MainWindow()
         {
@@ -30,7 +44,7 @@ namespace Todo_list
             toDos.Add(new ToDo("Поработать", new DateTime(2024, 1, 20).ToString("dd.MM.yyyy"), "Съездить на совещание в Москву"));
             toDos.Add(new ToDo("Отдохнуть", new DateTime(2024, 2, 1).ToString("dd.MM.yyyy"), "Съездить в отпуск в Сочи"));
 
-            dataGridToDo.ItemsSource = toDos;
+            listBoxToDo.ItemsSource = toDos;
             EndToDo();
         }
 
@@ -43,17 +57,18 @@ namespace Todo_list
         
         public void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
-            toDos.Remove(dataGridToDo.SelectedItem as ToDo);
-            dataGridToDo.ItemsSource = null;
-            dataGridToDo.ItemsSource = toDos;
+            toDos.Remove((sender as Button).DataContext as ToDo);
+            listBoxToDo.ItemsSource = null;
+            listBoxToDo.ItemsSource = toDos;
+
             EndToDo();
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (dataGridToDo.SelectedItem != null)
+            if (listBoxToDo.SelectedItem != null)
             {
-                int idx = toDos.IndexOf(dataGridToDo.SelectedItem as ToDo);
+                int idx = toDos.IndexOf((sender as CheckBox).DataContext as ToDo);
                 if (idx != -1) 
                     toDos[idx].Done = true;
             }
@@ -62,9 +77,9 @@ namespace Todo_list
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (dataGridToDo.SelectedItem != null)
+            if ((sender as CheckBox).DataContext as ToDo != null)
             {
-                int idx = toDos.IndexOf(dataGridToDo.SelectedItem as ToDo);
+                int idx = toDos.IndexOf((sender as CheckBox).DataContext as ToDo);
                 if (idx != -1)
                     toDos[idx].Done = false;
             }
