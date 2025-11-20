@@ -31,18 +31,15 @@ namespace Todo_list
             var owner = (this.Owner as MainWindow);
 
             string title = titleToDo.Text;
-            string date = dateToDo.Text;
+            DateTime? date = dateToDo.SelectedDate;
             string description = descriptionToDo.Text;
             
             if (title == "")
                 title = "Без названия";
-            if (date == "")
-                date = DateTime.Now.ToString("dd.MM.yyyy");
+            if (date == null)
+                date = DateTime.Now.Date;
             if (description == "")
                 description = "Описания нет";
-
-            var parsedDate = DateTime.Parse(date, new CultureInfo("ru-RU"));
-            date = parsedDate.ToString("dd.MM.yyyy");
 
             MainWindow.toDos.Add(new ToDo(title, date, description));
             owner.listBoxToDo.ItemsSource = null;
@@ -52,6 +49,7 @@ namespace Todo_list
             dateToDo.SelectedDate = null;
             descriptionToDo.Text = null;
 
+            // stupid stuff btw
             owner.progressBarToDo.Maximum = owner.listBoxToDo.Items.Count;
             owner.value.Text = owner.progressBarToDo.Value.ToString();
             owner.maximum.Text = owner.progressBarToDo.Maximum.ToString();

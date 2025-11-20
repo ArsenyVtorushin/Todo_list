@@ -40,9 +40,9 @@ namespace Todo_list
             InitializeComponent();
             toDos = new List<ToDo>();
 
-            toDos.Add(new ToDo("Приготовить покушать", new DateTime(2024, 1, 15).ToString("dd.MM.yyyy"), "Нет описания"));
-            toDos.Add(new ToDo("Поработать", new DateTime(2024, 1, 20).ToString("dd.MM.yyyy"), "Съездить на совещание в Москву"));
-            toDos.Add(new ToDo("Отдохнуть", new DateTime(2024, 2, 1).ToString("dd.MM.yyyy"), "Съездить в отпуск в Сочи"));
+            toDos.Add(new ToDo("Приготовить покушать", new DateTime(2024, 1, 15), "Нет описания"));
+            toDos.Add(new ToDo("Поработать", new DateTime(2024, 1, 20), "Съездить на совещание в Москву"));
+            toDos.Add(new ToDo("Отдохнуть", new DateTime(2024, 2, 1), "Съездить в отпуск в Сочи"));
 
             listBoxToDo.ItemsSource = toDos;
             EndToDo();
